@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="18b1a0d7-336f-4e49-8b00-48766aca62b6" activeEnvironment="Default environment" name="ContractService" resourceRoot="" soapui-version="5.7.0" encryptionMode="Not encrypted" updated="3.40.2 2022-07-27T09:18:31Z" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:interface xsi:type="con:WsdlInterface" id="e3458ab3-75ce-419a-b24b-ba55e6664a87" wsaVersion="NONE" name="ContractServiceSoap11" type="wsdl" bindingName="{http://xmlns.esb.ru/ext/ContractService/}ContractServiceSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8284/ws/ContractService/ContractService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:settings/>
+    <con:definitionCache type="TEXT" rootPart="http://localhost:8284/ws/ContractService/ContractService.wsdl">
+      <con:part>
+        <con:url>http://localhost:8284/ws/ContractService/ContractService.wsdl</con:url>
+        <con:content><![CDATA[<wsdl:definitions targetNamespace="http://xmlns.esb.ru/ext/ContractService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://xmlns.esb.ru/ext/ContractService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://xmlns.esb.ru/ext/ContractService/">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://xmlns.esb.ru/ext/ContractService/" xmlns:c="http://xmlns.esb.ru/ext/ContractService/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="CreateNewContractRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Id" type="c:UuidType"/>
+            <xsd:element name="DateStart" type="xsd:date"/>
+            <xsd:element name="DateEnd" type="xsd:date"/>
+            <xsd:element name="ContractNumber" type="xsd:string"/>
+            <xsd:element name="ContractName" type="xsd:string"/>
+            <xsd:element name="ContractualParties">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element maxOccurs="unbounded" minOccurs="1" name="ContractualParty">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="Name" type="xsd:string"/>
+                        <xsd:element name="BankAccount" type="xsd:string"/>
+                        <xsd:element name="BankBik" type="xsd:string"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateNewContractResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Status">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="RequestIsQueued"/>
+                  <xsd:enumeration value="Error"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="ErrorMessage" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="UuidType">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="([0-9]|[a-f]|[A-F]){8}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){12}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateNewContractResponse">
+    <wsdl:part element="tns:CreateNewContractResponse" name="CreateNewContractResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateNewContractRequest">
+    <wsdl:part element="tns:CreateNewContractRequest" name="CreateNewContractRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ContractService">
+    <wsdl:operation name="CreateNewContract">
+      <wsdl:input message="tns:CreateNewContractRequest" name="CreateNewContractRequest"></wsdl:input>
+      <wsdl:output message="tns:CreateNewContractResponse" name="CreateNewContractResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ContractServiceSoap11" type="tns:ContractService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreateNewContract">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateNewContractRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateNewContractResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContractServiceService">
+    <wsdl:port binding="tns:ContractServiceSoap11" name="ContractServiceSoap11">
+      <soap:address location="http://localhost:8284/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content>
+        <con:type>http://schemas.xmlsoap.org/wsdl/</con:type>
+      </con:part>
+    </con:definitionCache>
+    <con:endpoints>
+      <con:endpoint>http://localhost:8284/ws</con:endpoint>
+    </con:endpoints>
+    <con:operation id="7989017c-a47a-4099-a176-d3235ae4c88d" isOneWay="false" action="" name="CreateNewContract" bindingOperationName="CreateNewContract" type="Request-Response" outputName="CreateNewContractResponse" inputName="CreateNewContractRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+      <con:settings/>
+      <con:call id="632c21d4-d878-4a83-8738-f9cbbf8b3ac6" name="TestRequest">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://localhost:8284/ws</con:endpoint>
+        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://xmlns.esb.ru/ext/ContractService/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:CreateNewContractRequest>
+         <con:Id>48f00da6-8f94-46e4-af27-6a6a19323b1d</con:Id>
+         <con:DateStart>2022-03-07</con:DateStart>
+         <con:DateEnd>2022-03-15</con:DateEnd>
+         <con:ContractNumber>X2</con:ContractNumber>
+         <con:ContractName>Контракт сопровождения</con:ContractName>
+         <con:ContractualParties>
+            <con:ContractualParty>
+               <con:Name>Компания A</con:Name>
+               <con:BankAccount>40817810099910004312</con:BankAccount>
+               <con:BankBik>044525974</con:BankBik>
+            </con:ContractualParty>
+            <con:ContractualParty>
+               <con:Name>Компания B</con:Name>
+               <con:BankAccount>40817810099910004213</con:BankAccount>
+               <con:BankBik>044525974</con:BankBik>
+            </con:ContractualParty>
+         </con:ContractualParties>
+     </con:CreateNewContractRequest><con:CreateNewContractRequest/></soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:jmsPropertyConfig/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.esb.ru/ext/ContractService/ContractService/CreateNewContractRequest"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:call>
+    </con:operation>
+  </con:interface>
+  <con:restMockService id="808475a0-686e-4439-a127-f4de9122bb57" port="8285" path="/" host="localhost" name="ContractEventServiceMock" docroot="">
+    <con:settings/>
+    <con:properties/>
+    <con:constraints>
+      <con:congestion>0</con:congestion>
+      <con:inputBandwidth>-1</con:inputBandwidth>
+      <con:outputBandwidth>-1</con:outputBandwidth>
+      <con:maxThreadPoolCapacity>20</con:maxThreadPoolCapacity>
+      <con:coreThreadPoolCapacity>5</con:coreThreadPoolCapacity>
+      <con:virtError>
+        <con:start>0</con:start>
+        <con:endless>true</con:endless>
+      </con:virtError>
+    </con:constraints>
+    <con:headerValidator type="NONE"/>
+    <con:restMockAction name="status" method="POST" resourcePath="/status" id="6b02d5ba-c8e3-4466-9e81-609b400e540e">
+      <con:settings/>
+      <con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+      <con:dispatchStyle>SEQUENCE</con:dispatchStyle>
+      <con:dispatchConfig/>
+      <con:dispatchPath xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+      <con:dispatchXPath/>
+      <con:routeScript/>
+      <con:response name="status-response" id="2b96f1c9-ad96-4129-a087-d47f2865e142" httpResponseStatus="200" mediaType="application/json" dataSource="">
+        <con:settings/>
+        <con:responseContent/>
+      </con:response>
+    </con:restMockAction>
+  </con:restMockService>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:xmlTemplates/>
+    <con:parameters/>
+  </con:reporting>
+  <con:authRepository/>
+  <con:tags/>
+</con:soapui-project>
