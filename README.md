@@ -13,3 +13,5 @@
   ContractEventService слушает очередь contract.event в RabbitMQ. Полученные из очереди сообщения транслирует
 в тело POST-запроса и отправляет по адресу http:/host:port/status.
 
+Для запуска проекта склонируйте проект и запустите команду docker-compose up.
+Для тестирования проекта импртируйте файл ContractService-soapui-project.xml в SoapUI. Запустите мок ContractEventServiceMock и выполните TestRequest
