@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14.2
+    restart: always
+    ports:
+      - "5435:5434"
+    environment:
+      - POSTGRES_DB=contracts
+      - POSTGRES_USER=ttnpnm
+      - POSTGRES_PASSWORD=ttnpnm
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+
+  rabbitmq:
+    image: rabbitmq:3.7.3-management
+    restart: always
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  contract-processing-service:
+    build:
+      context: ContractProcessingService
+      dockerfile: Dockerfile.development
+    environment:
+      - PORT=8091
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/contracts
+    image: contract-processing-service
+    ports:
+      - 8091:8091
+    depends_on:
+      - postgres
+      - rabbitmq
+
+  contract-service:
+    build:
+      context: ContractService
+      dockerfile: Dockerfile.development
+    environment:
+      - PORT=8284
+    image: contract-service
+    ports:
+      - 8284:8284
+    depends_on:
+      - rabbitmq
+
+  contract-event-service:
+    build:
+      context: ContractEventService
+      dockerfile: Dockerfile.development
+    environment:
+      - PORT=8090
+    image: contract-event-service
+    ports:
+      - 8090:8090
+    depends_on:
+      - rabbitmq
+
+volumes:
+  db-data:

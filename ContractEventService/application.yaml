@@ -1,0 +1,7 @@
+mockServiceAddress: http://host.docker.internal:8285/status
+server:
+  port: 8090
+spring:
+  rabbitmq:
+    host: rabbitmq
+    port: 5672

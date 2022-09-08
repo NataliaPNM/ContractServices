@@ -1,0 +1,3 @@
+FROM bellsoft/liberica-openjdk-alpine:8
+COPY /app.jar apps.jar
+ENTRYPOINT ["java","-jar","/apps.jar"]

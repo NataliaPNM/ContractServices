@@ -1,0 +1,23 @@
+server:
+  port: 8091
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/contracts
+    driver-class-name: org.postgresql.Driver
+    username: ttnpnm
+    password: ttnpnm
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: always
+  main:
+    allow-bean-definition-overriding: 'true'
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+

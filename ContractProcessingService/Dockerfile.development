@@ -1,0 +1,10 @@
+FROM bellsoft/liberica-openjdk-alpine:8
+COPY /app.jar apps.jar
+ENTRYPOINT ["java","-jar","/apps.jar"]
+
+#ENTRYPOINT ["java","-jar","/apps.jar"]
+#COPY app.jar apps.jar
+
+
+#CMD java -jar ./ContractProcessingService-0.0.1-SNAPSHOT.jar
+#WORKDIR C:/Users/ttnpn/OneDrive/Рабочий стол/intellij projects java/api/ContractProcessingService
