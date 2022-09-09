@@ -19,12 +19,9 @@ public class RabbitConfiguration {
     @Value("${spring.rabbitmq.port}")
     private int rabbitPort;
 
-    //настраиваем соединение с RabbitMQ
     @Bean
     public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory =
-                new CachingConnectionFactory(rabbitHost,rabbitPort);
-        return connectionFactory;
+        return new CachingConnectionFactory(rabbitHost,rabbitPort);
     }
 
     @Bean

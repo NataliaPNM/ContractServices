@@ -1,23 +1,18 @@
 package com.example.contractprocessingservice.entity;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-
-
 import dto.ContractualParty;
 import dto.CreateNewContract;
 import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Getter
@@ -29,25 +24,22 @@ import java.util.UUID;
 @AllArgsConstructor
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class Contract {
-    @Id
-    @EqualsAndHashCode.Exclude
-    private UUID id;
+  @Id @EqualsAndHashCode.Exclude private UUID id;
 
-    private String dateStart;
+  private String dateStart;
 
-    private String dateEnd;
+  private String dateEnd;
 
-    private LocalDateTime dateSend;
+  private LocalDateTime dateSend;
 
-    private LocalDateTime dateCreate;
+  private LocalDateTime dateCreate;
 
-    private String contractNumber;
+  private String contractNumber;
 
-    private String contractName;
+  private String contractName;
 
-    private CreateNewContract.ClientApi clientApi;
+  private CreateNewContract.ClientApi clientApi;
 
-    @Type(type = "jsonb")
-    private List<ContractualParty> contractualParties = new ArrayList<>();
-
+  @Type(type = "jsonb")
+  private List<ContractualParty> contractualParties = new ArrayList<>();
 }

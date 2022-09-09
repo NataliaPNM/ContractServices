@@ -1,6 +1,5 @@
 package com.example.contracteventservice.route;
 
-import lombok.RequiredArgsConstructor;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Component;
 import static org.apache.camel.LoggingLevel.ERROR;
 
 @Component
-@RequiredArgsConstructor
 public class ContractRoute extends RouteBuilder {
 
   @Value("${mockServiceAddress}")

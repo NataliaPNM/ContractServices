@@ -1,6 +1,5 @@
 package com.example.contractprocessingservice.route;
 
-import com.example.contractprocessingservice.entity.Contract;
 import com.example.contractprocessingservice.mapper.ContractMapper;
 import com.example.contractprocessingservice.repository.ContractRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,11 +14,14 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.support.DefaultMessage;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 import static org.apache.camel.LoggingLevel.INFO;
 
 @Component
 @RequiredArgsConstructor
 public class ContractRoute extends RouteBuilder {
+
   private final ContractRepository contractRepository;
   private final ContractMapper contractMapper;
   private final ObjectMapper objectMapper;
@@ -58,11 +60,10 @@ public class ContractRoute extends RouteBuilder {
       return contractStatus;
     }
 
-    Contract contract =
-        contractRepository.save(contractMapper.toContractFromCreateNewContract(createNewContract));
+    contractRepository.save(contractMapper.toContractFromCreateNewContract(createNewContract));
+    contractStatus.setDateCreate(LocalDateTime.now());
     contractStatus.setStatus(ContractStatus.Status.CREATED);
-    contractStatus.setId(contract.getId());
-    contractStatus.setDateCreate(contract.getDateCreate());
+    contractStatus.setId(createNewContract.getId());
     return contractStatus;
   }
 }

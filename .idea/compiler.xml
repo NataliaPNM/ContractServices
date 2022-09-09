@@ -8,9 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ContractEventService" />
-        <module name="Services" />
       </profile>
-      <profile name="Annotation profile for ContractProcessingService" enabled="true">
+      <profile name="Annotation profile for Services" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -20,8 +19,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
         </processorPath>
-        <module name="ContractProcessingService" />
         <module name="ContractService" />
+        <module name="ContractProcessingService" />
       </profile>
     </annotationProcessing>
   </component>
@@ -30,7 +29,7 @@
       <module name="ContractEventService" options="-parameters" />
       <module name="ContractProcessingService" options="-parameters -Amapstruct.defaultComponentModel=spring" />
       <module name="ContractService" options="-parameters -Amapstruct.defaultComponentModel=spring" />
-      <module name="Services" options="-parameters" />
+      <module name="Services" options="" />
     </option>
   </component>
 </project>
