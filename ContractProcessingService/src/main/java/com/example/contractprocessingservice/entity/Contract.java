@@ -6,6 +6,7 @@ import dto.CreateNewContract;
 import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -32,13 +33,14 @@ public class Contract {
 
   private LocalDateTime dateSend;
 
+  @UpdateTimestamp
   private LocalDateTime dateCreate;
 
   private String contractNumber;
 
   private String contractName;
 
-  private CreateNewContract.ClientApi clientApi;
+  private String clientApi;
 
   @Type(type = "jsonb")
   private List<ContractualParty> contractualParties = new ArrayList<>();

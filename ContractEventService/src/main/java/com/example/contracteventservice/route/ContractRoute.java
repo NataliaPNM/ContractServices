@@ -5,7 +5,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import static org.apache.camel.LoggingLevel.ERROR;
+import static org.apache.camel.LoggingLevel.INFO;
 
 @Component
 public class ContractRoute extends RouteBuilder {
@@ -16,7 +16,7 @@ public class ContractRoute extends RouteBuilder {
   @Override
   public void configure() {
     from("rabbitmq:amq.direct?queue=contract.event&routingKey=event&autoDelete=false")
-        .log(ERROR, "Got this message from Rabbit: ${body}")
+        .log(INFO, "Got this message from Rabbit: ${body}")
         .unmarshal()
         .json()
         .setHeader(Exchange.HTTP_METHOD, constant("POST"))

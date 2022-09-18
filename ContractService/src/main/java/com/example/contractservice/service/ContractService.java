@@ -3,7 +3,6 @@ package com.example.contractservice.service;
 import com.example.contractservice.mapper.CreateNewContractMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -21,15 +20,18 @@ public class ContractService {
 
   public CreateNewContractResponse createNewContract(CreateNewContractRequest request)
       throws JsonProcessingException {
-    objectMapper.registerModule(new JavaTimeModule());
+
     CreateNewContractResponse response = new CreateNewContractResponse();
     try {
+
       template.convertAndSend(
           "contract.create",
           objectMapper.writeValueAsString(createNewContractMapper.toCreateNewContract(request)));
     } catch (AmqpException amqpException) {
-      response.setErrorMessage(amqpException.getMessage());
+      // add logs
+      response.setErrorMessage("При отправке сообщения произошла ошибка. Повторите попытку позже");
       response.setStatus("Error");
+      return response;
     }
 
     response.setStatus("RequestIsQueued");

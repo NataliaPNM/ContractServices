@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS contract;
-CREATE TABLE contract
+CREATE TABLE IF NOT EXISTS contract
 (
     id                  uuid                                NOT NULL,
     date_start          VARCHAR(255),
@@ -12,4 +11,4 @@ CREATE TABLE contract
     contractual_parties jsonb,
     PRIMARY KEY (id)
 );
-CREATE INDEX contract_number_index ON contract (contract_number);
+CREATE INDEX IF NOT EXISTS contract_number_index ON contract (contract_number);
